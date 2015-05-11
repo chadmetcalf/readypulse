@@ -14,7 +14,7 @@ module Readypulse
     end
 
     def response_content!
-      ContentCollection.new(response['content'])
+      ImageCollection.new(content: response['content'])
     end
 
     def response
