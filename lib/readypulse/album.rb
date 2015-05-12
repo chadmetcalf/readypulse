@@ -4,29 +4,13 @@ module Readypulse
     end
 
     def images
-      response_content
+      @images ||= ImageCollection.new
     end
 
     private
 
-    def response_content
-      @response_content ||= response_content!
-    end
-
-    def response_content!
-      ImageCollection.new(content: response['content'])
-    end
-
-    def response
-      @response ||= response!
-    end
-
-    def response!
-      JSON.parse(Net::HTTP.get(uri))
-    end
-
-    def uri
-      URI("http://widgets.readypulse.com/api/v1/widgets/#{id}.json")
+    def from_client
+      Client.instance.from_client
     end
   end
 end
