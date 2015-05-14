@@ -4,6 +4,7 @@ module Readypulse
 
     before(:each) do
       client = double(Client)
+      allow(Client).to receive(:instance).and_return(client)
       allow(client).to receive(:to_album).and_return(from_client)
     end
 

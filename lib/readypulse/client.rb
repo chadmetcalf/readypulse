@@ -1,36 +1,43 @@
 module Readypulse
-  class Client
+  require 'json'
 
-    def self.instance(id: nil)
-      @@client ||= Client.new(id: id)
+  class Client
+    def self.instance(album_id: nil)
+      @@client ||= Client.new
     end
 
+    attr_accessor :album_id
+
     def to_album
+      parsed_response
     end
 
     def to_images
+      parsed_response['content']
     end
 
   private
-
-    def response_content
-      @response_content ||= response_content!
+    def parsed_response
+      @parsed_response || parsed_response!
     end
 
-    def response_content!
-      ImageCollection.new(content: response['content'])
+    def parsed_response!
+      @parsed_response = JSON.parse(response)
     end
 
     def response
-      @response ||= response!
+      @response || response!
     end
 
     def response!
-      JSON.parse(Net::HTTP.get(uri))
+      @response = Net::HTTP.get(uri)
+      fail TimeoutError.new if @response.empty? || @response.nil?
+      # TODO: What is the right error message here?
+      @response
     end
 
     def uri
-      URI("http://widgets.readypulse.com/api/v1/widgets/#{id}.json")
+      URI("http://widgets.readypulse.com/api/v1/widgets/#{album_id}.json")
     end
   end
 end
