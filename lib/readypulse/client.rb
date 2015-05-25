@@ -8,21 +8,30 @@ module Readypulse
 
     attr_accessor :album_id
 
-    def to_album
-      parsed_response
+    def self.instance
+      @@client ||= Client.new
+    end
+
+    def album_id=(album_id)
+      reset_response! if @album_id != album_id
+      @album_id = album_id
+    end
+
+    def to_album(album_id:)
     end
 
     def to_images
-      parsed_response['content']
+      response_content
     end
 
   private
-    def parsed_response
-      @parsed_response || parsed_response!
+
+    def reset_response!
+      @response = nil
     end
 
-    def parsed_response!
-      @parsed_response = JSON.parse(response)
+    def response_content
+      response['content']
     end
 
     def response

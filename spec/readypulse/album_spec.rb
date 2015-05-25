@@ -8,7 +8,7 @@ module Readypulse
       allow(client).to receive(:to_album).and_return(from_client)
     end
 
-    context 'initialization' do
+    context '.new' do
       it 'requires an id value' do
         no_id_album = ->{Album.new}
 
