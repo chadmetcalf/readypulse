@@ -2,13 +2,18 @@ module Readypulse
   class ImageCollection
 
     include Enumerable
-    attr_accessor :images
+    attr_accessor :images, :album_id
 
-    def initialize(images: [])
+    def initialize(album_id:)
+      @album_id = album_id
     end
 
     def each(&block)
       images.each(&block)
+    end
+
+    def all
+      images
     end
 
     def images
@@ -18,11 +23,13 @@ module Readypulse
     private
 
     def get_images
-      from_client
+      from_client.map do |raw_image|
+        Image.new(raw_image: raw_image)
+      end
     end
 
     def from_client
-      Client.instance.to_images
+      Client.instance.to_images(album_id: album_id)
     end
   end
 end

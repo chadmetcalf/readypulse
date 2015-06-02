@@ -2,7 +2,6 @@ module Readypulse
   RSpec.describe Album do
     let(:album_id) {1}
     subject(:album) {Album.new(id: album_id)}
-    let(:from_client) {from_client!}
 
     before(:each) do
       client = double(Client)
@@ -37,11 +36,8 @@ module Readypulse
       expect(ImageCollection).to have_received(:new)
     end
 
-    def from_client!
-      {id: album_id, description: "A Readypulse album", item_count: 10,
-       name: "Readypulse name", type: "Type", readypulse_user: "Readypulse User",
-       created_at: "2012-06-20T06:18:29Z", updated_at: "2015-01-21T17:10:57Z"
-      }
+    def from_client
+      {:id=>1, :name=>"My Very First Curation", :description=>"This is my first curation on the ReadyPulse production site.", :type=>"static", :created_at=>"2012-04-09T09:35:07Z", :updated_at=>"2015-01-21T17:10:57Z", :brand=>{:id=>162, :name=>"Metal Mulisha"}, :readypulse_user=>{:id=>1, :name=>"Mihir Vaidya"}, :item_count=>3}
     end
   end
 end

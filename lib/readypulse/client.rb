@@ -18,7 +18,7 @@ module Readypulse
 
     def to_images(album_id: @album_id)
       validate_album_id(album_id)
-      parsed_response_content.map{|v| v.fetch(:media, {}).fetch(:images, nil)}
+      parsed_response_content
       # parsed_response_content.first
     end
 
