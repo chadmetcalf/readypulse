@@ -1,18 +1,26 @@
 module Readypulse
   class Album
-    attr_accessor :id
+
+    ATTR_FIELDS = %w(created_at description item_count name readypulse_user type
+                updated_at)
+
+    attr_accessor :id, :brand, :content, :description, :item_count, :name,
+                  :readypulse_user, :type, :created_at, :updated_at
 
     def initialize(id:)
-      from_client
+      @id = id
+      ATTR_FIELDS.each do |attr_field|
+        instance_variable_set( "@" + attr_field, from_client[attr_field.to_sym])
+      end
     end
 
     def images
-      @images ||= ImageCollection.new
+      @images ||= ImageCollection.new(album_id: id)
     end
 
   private
     def from_client
-      Client.instance(album_id: id).to_album
+      Client.instance.to_album(album_id: id)
     end
   end
 end
