@@ -1,30 +1,19 @@
 module Readypulse
-  class ImageCollection
+  class ImageCollection < Array
 
-    include Enumerable
     attr_accessor :images, :album_id
 
     def initialize(album_id:)
       @album_id = album_id
-    end
 
-    def each(&block)
-      images.each(&block)
-    end
-
-    def all
-      images
-    end
-
-    def images
-      @images ||= get_images
+      get_images
     end
 
     private
 
     def get_images
       from_client.map do |raw_image|
-        Image.new(raw_image: raw_image)
+        self << Image.new(raw_image: raw_image)
       end
     end
 

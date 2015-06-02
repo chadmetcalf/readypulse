@@ -8,12 +8,16 @@ module Readypulse
       allow(Client).to receive(:instance).and_return(client)
       allow(client).to receive(:to_images).and_return(from_client)
 
-      image = double(Image)
+      image = Image.new(raw_image: {})
       allow(Image).to receive(:new).and_return(image)
     end
 
-    it 'has image_type objects' do
-      expect(image_collection).to have(3).images
+    it 'is a collection' do
+      expect(image_collection).to have(3).items
+    end
+
+    it 'contains image objects' do
+      expect(image_collection.sample).to be_a(Image)
     end
 
 
