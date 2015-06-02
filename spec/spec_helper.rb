@@ -90,4 +90,5 @@ RSpec.configure do |config|
 =end
 end
 
+require 'rspec/its'
 require 'readypulse'
