@@ -54,10 +54,13 @@ module Readypulse
     #
     # returns an Image object with ImageType objects at the root too
 
-    attr_accessor :readypulse_content_score
-    
+    attr_accessor :products, :actor, :readypulse_content_score, :external_conversation_link
+
     def initialize(raw_image:)
       @readypulse_content_score = raw_image[:readypulse_content_score]
+      @external_conversation_link = raw_image[:external_conversation_link]
+      @products = raw_image.fetch(:products, [])
+      @actor = raw_image[:actor]
 
 
       raw_image.fetch(:media, {}).fetch(:images, []).each do |raw_type|

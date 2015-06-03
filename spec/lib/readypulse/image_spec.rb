@@ -4,6 +4,9 @@ module Readypulse
 
     its(:types) {is_expected.to eq(["email", "tile", "square-tile", "mobile-tile", "large", "original"])}
     its(:readypulse_content_score) {is_expected.to eq(from_client[:readypulse_content_score])}
+    its(:external_conversation_link) {is_expected.to eq(from_client[:external_conversation_link])}
+    its(:products) {is_expected.to eq(from_client[:products])}
+    its(:actor) {is_expected.to eq(from_client[:actor])}
 
     it 'has image_type objects' do
       expect(image["email"]).to       be_an(ImageType)
