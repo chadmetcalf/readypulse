@@ -2,11 +2,35 @@ module Readypulse
   RSpec.describe Image do
     subject(:image) {Image.new(raw_image: from_client)}
 
-    its(:types) {is_expected.to eq(["email", "tile", "square-tile", "mobile-tile", "large", "original"])}
+    # String Attribute
+    its(:id)                  {is_expected.to eq(from_client[:id])}
+    its(:uniq_id)             {is_expected.to eq(from_client[:uniq_id])}
+    its(:external_network_id) {is_expected.to eq(from_client[:external_network_id])}
+    its(:content_source)      {is_expected.to eq(from_client[:content_source])}
+    its(:content_index)       {is_expected.to eq(from_client[:content_index])}
+    its(:type)                {is_expected.to eq(from_client[:type])}
+    its(:story_url)           {is_expected.to eq(from_client[:story_url])}
+    its(:user_text)           {is_expected.to eq(from_client[:user_text])}
+    its(:timestamp)           {is_expected.to eq(from_client[:timestamp])}
+    its(:social_timestamp)    {is_expected.to eq(from_client[:social_timestamp])}
+    its(:sentiment)           {is_expected.to eq(from_client[:sentiment])}
+
+    # Boolean Attributes
+    its(:sentiment)       {is_expected.to eq(from_client[:sentiment])}
+    its(:is_consented)    {is_expected.to eq(from_client[:is_consented])}
+    its(:is_incentivized) {is_expected.to eq(from_client[:is_incentivized])}
+    its(:is_compliant)    {is_expected.to eq(from_client[:is_compliant])}
+    its(:is_approved)     {is_expected.to eq(from_client[:is_approved])}
+
+    # Fixnum Attributes
     its(:readypulse_content_score) {is_expected.to eq(from_client[:readypulse_content_score])}
-    its(:external_conversation_link) {is_expected.to eq(from_client[:external_conversation_link])}
+
+    # Collection Attributes
+    its(:social_attributes) {is_expected.to eq(from_client[:social_attributes])}
     its(:products) {is_expected.to eq(from_client[:products])}
     its(:actor) {is_expected.to eq(from_client[:actor])}
+
+    its(:types) {is_expected.to eq(["email", "tile", "square-tile", "mobile-tile", "large", "original"])}
 
     it 'has image_type objects' do
       expect(image["email"]).to       be_an(ImageType)

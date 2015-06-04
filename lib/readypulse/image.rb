@@ -54,14 +54,27 @@ module Readypulse
     #
     # returns an Image object with ImageType objects at the root too
 
-    attr_accessor :products, :actor, :readypulse_content_score, :external_conversation_link
+    STRING_ATTRIBUTES = %w(id uniq_id external_network_id content_source
+                           content_index type story_url
+                           external_conversation_link user_text
+                           timestamp social_timestamp sentiment)
+
+    BOOLEAN_ATTRIBUTES = %w(has_media is_consented is_incentivized
+                            is_compliant is_approved)
+
+    # String and Boolean Attribute attr_accessor generated dynamically
+    attr_accessor :products, :actor,
+                  :readypulse_content_score, :social_attributes, :cta
 
     def initialize(raw_image:)
-      @readypulse_content_score = raw_image[:readypulse_content_score]
-      @external_conversation_link = raw_image[:external_conversation_link]
-      @products = raw_image.fetch(:products, [])
-      @actor = raw_image[:actor]
+      build_string_attributes(raw_image)
+      build_boolean_attributes(raw_image)
 
+      @social_attributes = raw_image[:social_attributes]
+      @readypulse_content_score = raw_image[:readypulse_content_score]
+      @cta = raw_image[:cta]
+      @products = raw_image.fetch(:products, [{}])
+      @actor = raw_image.fetch(:actor, {})
 
       raw_image.fetch(:media, {}).fetch(:images, []).each do |raw_type|
         self.store(raw_type[:type], ImageType.new(raw_type: raw_type))
@@ -70,6 +83,33 @@ module Readypulse
 
     def types
       self.keys
+    end
+
+    def inspect
+      instance_variables.inject([
+        "\n#TestClass",
+        "\tObject_i = #{object_id}",
+        "\tInstance variables:"
+      ]) do |result, item|
+        result << "\t\t#{item} = #{instance_variable_get(item)}"
+        result
+      end.join("\n")
+    end
+
+    private
+
+    def build_string_attributes(raw_image)
+      STRING_ATTRIBUTES.each do |attr_name|
+        self.class.send(:attr_accessor, attr_name)
+        instance_variable_set("@#{attr_name}", raw_image.fetch(attr_name.to_sym, nil))
+      end
+    end
+
+    def build_boolean_attributes(raw_image)
+      BOOLEAN_ATTRIBUTES.each do |attr_name|
+        self.class.send(:attr_accessor, attr_name)
+        instance_variable_set("@#{attr_name}", raw_image.fetch(attr_name.to_sym, nil))
+      end
     end
   end
 end
