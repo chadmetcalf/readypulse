@@ -6,7 +6,7 @@
 
 # Readypulse
 
-TODO: Write a gem description
+Ruby wraper for Readypulse API
 
 ## Installation
 
