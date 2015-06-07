@@ -10,7 +10,7 @@ module Readypulse
     def initialize(id:)
       @id = id
       ATTR_FIELDS.each do |attr_field|
-        instance_variable_set( "@" + attr_field, get_album[attr_field.to_sym])
+        instance_variable_set( "@" + attr_field, retrieve_album[attr_field.to_sym])
       end
     end
 
@@ -19,7 +19,7 @@ module Readypulse
     end
 
   private
-    def get_album
+    def retrieve_album
       from_client
     end
 

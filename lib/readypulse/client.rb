@@ -26,7 +26,7 @@ module Readypulse
 
     def validate_album_id(album_id)
       unless album_id.is_a?(Fixnum)
-        fail ArgumentError.new("Incorrect album_id value: #{album_id.inspect}")
+        fail ArgumentError, "Incorrect album_id value: #{album_id.inspect}"
       end
 
       reset_response! if album_id_changed?(album_id)
@@ -51,7 +51,7 @@ module Readypulse
     end
 
     def parsed_response
-      JSON.parse(response,:symbolize_names => true)
+      JSON.parse(response, symbolize_names: true)
     end
 
     def response
@@ -61,7 +61,7 @@ module Readypulse
     def response!
       @response = Net::HTTP.get(uri)
       # TODO: What is the right error message here?
-      fail TimeoutError.new if @response.empty? || @response.nil?
+      fail TimeoutError, "Readypulse API Error" if @response.empty? || @response.nil?
       @response
     end
 

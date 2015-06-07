@@ -6,12 +6,12 @@ module Readypulse
     def initialize(album_id:)
       @album_id = album_id
 
-      get_images
+      retrieve_images
     end
 
     private
 
-    def get_images
+    def retrieve_images
       from_client.map do |raw_image|
         self << Image.new(raw_image: raw_image)
       end
