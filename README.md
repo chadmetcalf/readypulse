@@ -1,7 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/readypulse.svg)](http://badge.fury.io/rb/readypulse)
 [![Dependency Status](https://gemnasium.com/chadmetcalf/readypulse.svg)](https://gemnasium.com/chadmetcalf/readypulse)
 [![Build Status](https://circleci.com/gh/chadmetcalf/readypulse/tree/master.svg?style=shield)](https://circleci.com/gh/chadmetcalf/readypulse)
-[![Coverage Status](http://img.shields.io/coveralls/chadmetcalf/readypulse/master.svg)](https://coveralls.io/r/chadmetcalf/readypulse)
+[![Test Coverage](https://codeclimate.com/github/chadmetcalf/readypulse/badges/coverage.svg)](https://codeclimate.com/github/chadmetcalf/readypulse/coverage)
 [![Code Climate](https://codeclimate.com/github/chadmetcalf/readypulse/badges/gpa.svg)](https://codeclimate.com/github/chadmetcalf/readypulse)
 
 # Readypulse
