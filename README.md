@@ -34,7 +34,7 @@ album.description # => "This is my first curation on the ReadyPulse production s
 images = album.images # => #<ImageCollection>
 
 album.images.first.types          # => ["email", "tile", "square-tile", "mobile-tile", "large", "original"]
-album.images.first['mobile-tile'] # => 'https://cloudinary-a.akamaihd.net/readypulse/image/upload/c_fill,fl_progressive,h_250,q_75,w_300/v1418764365/ig_3542844_630741923525326235_3542844.jpg'
+album.images.first['mobile-tile'].url # => 'https://cloudinary-a.akamaihd.net/readypulse/image/upload/c_fill,fl_progressive,h_250,q_75,w_300/v1418764365/ig_3542844_630741923525326235_3542844.jpg'
 ```
 
 ## Contributing
