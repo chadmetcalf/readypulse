@@ -30,6 +30,7 @@ module Readypulse
       expect(client.to_images(album_id: album_id)).to eq(from_client_to_image)
     end
 
+    # rubocop:disable all
     def from_client_to_album
       {:id=>1, :name=>"My Very First Curation", :description=>"This is my first curation on the ReadyPulse production site.", :type=>"static", :created_at=>"2012-04-09T09:35:07Z", :updated_at=>"2015-01-21T17:10:57Z", :brand=>{:id=>162, :name=>"Metal Mulisha"}, :readypulse_user=>{:id=>1, :name=>"Mihir Vaidya"}, :item_count=>3}
     end
