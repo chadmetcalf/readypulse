@@ -13,7 +13,7 @@ module Readypulse
       it 'requires an id value' do
         no_id_album = ->{Album.new}
 
-        expect{no_id_album.call}.to raise_error
+        expect{no_id_album.call}.to raise_error(ArgumentError)
       end
 
       it 'is successful' do
