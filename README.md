@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/readypulse.svg)](http://badge.fury.io/rb/readypulse)
+[![version](https://badge.fury.io/gh/chadmetcalf%2Freadypulse.svg)](https://badge.fury.io/gh/chadmetcalf%2Freadypulse)
 [![Dependency Status](https://gemnasium.com/chadmetcalf/readypulse.svg)](https://gemnasium.com/chadmetcalf/readypulse)
 [![Build Status](https://img.shields.io/circleci/project/chadmetcalf/readypulse/master.svg?style=flat)](https://circleci.com/gh/chadmetcalf/readypulse)
 [![Test Coverage](https://codeclimate.com/github/chadmetcalf/readypulse/badges/coverage.svg)](https://codeclimate.com/github/chadmetcalf/readypulse/coverage)
